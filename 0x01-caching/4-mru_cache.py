@@ -24,9 +24,9 @@ class MRUCache(BaseCaching):
     def put(self, key, item):
         """
         Assigns the item value to dictionary self.cache-data for given key
-        
-        If there is no key or item the method does nothing 
-        
+
+        If there is no key or item the method does nothing
+
         If the number of items in self.cache_data exceeds
         BaseCaching.MAX_ITEMS, the most recently used item (MRU) is discarded
 

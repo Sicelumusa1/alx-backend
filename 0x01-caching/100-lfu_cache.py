@@ -23,7 +23,7 @@ class LFUCache(BaseCaching):
     def put(self, key, item):
         """
         Assigns the item value to the dictionary self.cache_data
-        If the number of items in self.cache_data exceeds 
+        If the number of items in self.cache_data exceeds
         BaseCaching.MAX_ITEMS,the least frequently used item (LFU)
         is discarded
 
@@ -35,7 +35,7 @@ class LFUCache(BaseCaching):
             if len(self.cache_data) >= BaseCaching.MAX_ITEMS:
                 # find the least frequently used item
                 min_usage = min(self.usage_count.values())
-                lfu_keys = [k for k, v in self.usage_count.items() if 
+                lfu_keys = [k for k, v in self.usage_count.items() if
                             v == min_usage]
 
                 # if multiple items have the same least frequency, use
@@ -62,4 +62,4 @@ class LFUCache(BaseCaching):
         if key in self.cache_data:
             self.usage_count[key] += 1
             return self.cache_data[key]
-        return None 
+        return None
