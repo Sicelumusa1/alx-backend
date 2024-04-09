@@ -20,14 +20,14 @@ babel = Babel(app)
 app.config.from_object(Config)
 
 @babel.localeselector
-def get_locale() -> str:
+def get_locale():
     """
     """
-    user_languages = request.accept_languages
-    for lang, _ in user_languages:
-        if lang in ap.config['LANGUAGES']:
-            rturn lang
-    return app.config['BABEL_DEFAULT_LOCALE']
+    requested_locale = request.args.get('locale')
+
+    if requested_locale and requested_locale in app.config['LANGUAGES']:
+        return requested_locale
+    return app.config['BABEL_DEFAULT_LOCALE2']
 
 @app.route("/")
 def index():
