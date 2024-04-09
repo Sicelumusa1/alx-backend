@@ -14,10 +14,12 @@ app = Flask(__name__)
 
 class Config:
     """
+    config for Flask app
     """
     LANGUAGES = ['en', 'fr']
-    BABEL_DEFAULT_LOCALE ='en'
+    BABEL_DEFAULT_LOCALE = 'en'
     BABEL_DEFAULT_TIMEZONE = 'UTC'
+
 
 babel = Babel(app)
 app.config.from_object(Config)
@@ -30,8 +32,13 @@ users = {
     4: {"name": "Teletubby", "locale": None, "timezone": "Europe/London"},
 }
 
+
 def get_user(user_id: int) -> Optional[Dict[str, Optional[str]]]:
+    "''
+    returns users by their ids
+    """
     return users.get(user_id)
+
 
 @app.before_request
 def before_request():
@@ -41,9 +48,7 @@ def before_request():
 
 @app.route("/")
 def index():
-    """
-    renders index.html
-    """
+    """renders index.html"""
     return render_template('index.html')
 
 

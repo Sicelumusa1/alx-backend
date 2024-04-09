@@ -9,15 +9,19 @@ from flask_babel import Babel
 
 app = Flask(__name__)
 
+
 class Config:
     """
+    config for Flask app
     """
     LANGUAGES = ['en', 'fr']
-    BABEL_DEFAULT_LOCALE ='en'
+    BABEL_DEFAULT_LOCALE = 'en'
     BABEL_DEFAULT_TIMEZONE = 'UTC'
+
 
 babel = Babel(app)
 app.config.from_object(Config)
+
 
 @babel.localeselector
 def get_locale():
@@ -28,6 +32,7 @@ def get_locale():
     if requested_locale and requested_locale in app.config['LANGUAGES']:
         return requested_locale
     return app.config['BABEL_DEFAULT_LOCALE2']
+
 
 @app.route("/")
 def index():
